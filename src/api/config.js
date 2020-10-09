@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
+import settings from '../../windows'
 
 // const Message = Vue.prototype.$message
 // const Confirm = Vue.prototype.$confirm
@@ -7,9 +8,8 @@ import axios from 'axios'
 // 创建axios实例 (VUE_APP_BASE_API 开发环境的配置在 .env.development、生产环境的配置在 .env.production)
 // const domain = process.env.NODE_ENV === 'production' ? '' : ''
 const service = axios.create({
-  baseURL: '',
-  withCredentials: false, // 跨域请求携带cookies
-  timeout: 10000 // 5s请求超时
+  baseURL: settings.server,
+  withCredentials: false // 跨域请求携带cookies
 })
 
 let loading // 定义loading变量
@@ -107,22 +107,26 @@ service.interceptors.response.use(
   response => {
     tryHideFullScreenLoading(response.config.loading)
     if (!response || !response.data) return { ok: false, msg: '请求无响应' }
-    const { data_type, response_data = {}, msg } = response.data
-    const reponseOk = data_type === '1'
-    // const messageType = reponseOk ? 'info' : 'error'
-
-    if (data_type === '3') {
-      window.location.href = 'about:blank'
-      window.close()
-      return
-    }
-    // messageTip(msg, code, messageType)
     return {
-      ok: reponseOk,
-      data: response_data || response,
-      msg,
-      response
+      ok: true,
+      data: response
     }
+    // const { data_type, response_data = {}, msg } = response.data
+    // const reponseOk = data_type === '1'
+    // // const messageType = reponseOk ? 'info' : 'error'
+
+    // if (data_type === '3') {
+    //   window.location.href = 'about:blank'
+    //   window.close()
+    //   return
+    // }
+    // // messageTip(msg, code, messageType)
+    // return {
+    //   ok: reponseOk,
+    //   data: response_data || response,
+    //   msg,
+    //   response
+    // }
   },
   error => {
     console.log('err' + error) // for debug

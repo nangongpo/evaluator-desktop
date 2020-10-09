@@ -11,7 +11,9 @@ module.exports = {
     parser: 'babel-eslint'
   },
   globals: {
-    __static: true
+    __static: true,
+    __ipconfig: true,
+    fs: true
   },
   /**
    * "off" or 0 - 关闭规则

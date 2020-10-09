@@ -16,7 +16,8 @@ export default {
     }
   },
   render(createElement, { props, data }) {
-    return createElement('Toast', { class: 'my-toast', props, ...data })
+    const newClass = data.class || {}
+    return createElement('Toast', { props, ...data, class: { 'my-toast': true, ...newClass }})
   }
 }
 </script>

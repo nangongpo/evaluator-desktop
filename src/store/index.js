@@ -18,7 +18,8 @@ const store = new Vuex.Store({
   state: {
     baseURL: baseURL,
     appActive: false,
-    noticeInfo: {}
+    noticeInfo: {},
+    printInfo: {}
   },
   mutations: {
     SET_APP_ACTIVE(state, bool) {
@@ -26,6 +27,9 @@ const store = new Vuex.Store({
     },
     SET_NOTICE_INFO(state, info = {}) {
       state.noticeInfo = info
+    },
+    SET_PRINT_INFO(state, data = '') {
+      state.printInfo = data
     }
   },
   modules,

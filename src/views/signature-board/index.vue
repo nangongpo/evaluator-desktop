@@ -1,6 +1,5 @@
 <template>
-  <div class="signature-board">
-    <AppStatus :active="appActive"/>
+  <AppWrapper :active="appActive" position="right" class="app-wrapper signature-board">
     <Card class="dialog-card">
       <h4 slot="title" class="dialog-card-title">签名板</h4>
       <div class="signature-area" slot="content">
@@ -14,29 +13,25 @@
           :bgColor.sync="bgColor" />
       </div>
       <template slot="footer">
-        <Button icon="pi pi-check" label="提交" class="p-button-info" @click="handleSubmit" />
+        <Button icon="pi pi-check" label="保存" class="p-button-info" @click="handleSubmit" />
         <Button icon="pi pi-ban" label="清空" class="p-button-danger" @click="handleReset" />
-        <Button icon="pi pi-times" label="取消" class="p-button-secondary" @click="handleSubmit('cancel')" />
       </template>
     </Card>
-  </div>
+  </AppWrapper>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import AppStatus from 'components/AppStatus'
 import Card from 'primevue/card'
 import vueEsign from 'vue-esign'
 import Button from 'primevue/button'
-// import { connect } from 'utils/connect'
-import { sendRequest } from 'api'
+import AppWrapper from 'components/AppWrapper'
 
 export default {
-  name: '',
-  components: { AppStatus, Card, vueEsign, Button },
+  components: { AppWrapper, Card, vueEsign, Button },
   data() {
     return {
-      lineWidth: 2,
+      lineWidth: 4,
       lineColor: '#000000',
       bgColor: '#fff',
       resultImg: '',
@@ -44,26 +39,17 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      baseURL: state => state.baseURL,
-      appActive: state => state.appActive,
-      number_info: state => state.noticeInfo.number_info
-    })
+    ...mapState(['appActive'])
   },
   methods: {
     async handleSubmit() {
-      const { number_info } = this
-      if (!number_info) return this.messageTip({ type: 'info', message: '请重新发起签名板' })
       const signature = await this.$refs.esign.generate().catch(() => {})
       if (!signature) return this.messageTip({ type: 'info', message: '请签字' })
-      const result = await sendRequest({
-        url: `${this.baseURL}/queue/signature`,
-        method: 'post',
-        params: { number_info, signature }
-      })
-      if (result.ok) {
-        this.messageTip({ type: 'info', message: '提交成功' })
-      }
+      window.ipcRenderer.send('close-dialog', 'signature-board')
+      setTimeout(() => {
+        window.ipcRenderer.send('open-dialog', 'print', { signature })
+        this.handleReset()
+      }, 300)
     },
     handleReset() {
       this.$refs.esign.reset()
@@ -80,6 +66,7 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+  background-color: $bg;
   .dialog-card {
     width: 440px;
   }

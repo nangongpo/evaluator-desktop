@@ -15,12 +15,27 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  background-color: transparent;
   box-sizing: border-box;
-  background-color: #6699cb;
 }
 
 #app {
   height: 100%;
+}
+
+.app-container {
+  padding: 2rem;
+  background-color: $bg;
+}
+
+.drag-wrapper {
+  width: 100%;
+  height: 100%;
+  -webkit-app-region: drag;
+  cursor: move;
+  .drag-content {
+    -webkit-app-region: no-drag
+  }
 }
 
 .fr {
@@ -45,28 +60,6 @@ body {
 .no-focus {
   &:focus {
     box-shadow: none !important;
-  }
-}
-
-#app {
-  .p-toast {
-    &.tip-toast {
-      width: auto;
-      min-width: 10rem;
-      opacity: 1;
-      .p-toast-message-content {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-      }
-      .p-toast-message {
-        .p-toast-message-content {
-          .p-toast-detail {
-            margin: 0;
-          }
-        }
-      }
-    }
   }
 }
 

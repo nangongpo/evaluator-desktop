@@ -11,11 +11,13 @@ import 'primeflex/primeflex.css'
 
 import ToastService from 'primevue/toastservice'
 import MessageTip from '@/mixins/message-tip'
+import Tooltip from 'primevue/tooltip'
 
 Vue.config.productionTip = false
 
 Vue.use(ToastService)
 Vue.use(MessageTip)
+Vue.directive('tooltip', Tooltip)
 
 new Vue({
   router,

@@ -98,6 +98,12 @@ export async function dispathPage(windows) {
       const { title, label } = pages[page]
       const config = { title, label, ...pages[page].__window, show: pages[page].__isMainWindow }
       windows[page] = await createWindow(devPath, `${page}.html`, config)
+      windows[page].webContents.on('did-finish-load', () => {
+        windows[page].webContents.send('app-show', page)
+      })
+      windows[page].on('show', (event) => {
+        event.sender.webContents.send('app-show', page)
+      })
       // console.log(`窗口${page}`, wins[page].id)
       windows[page].on('close', (event) => {
         // 主窗口关闭，其他窗口全部关闭
@@ -138,8 +144,22 @@ export function addIpcMainEvent(windows = {}) {
     const winID = windows[winName] ? windows[winName].id : null
     return event.sender.send('response', winID)
   })
-  ipcMain.on('open-dialog', async(event, winName) => {
-    pages[winName] && windows[winName].show()
+  ipcMain.on('open-dialog', async(event, winName, args) => {
+    if (pages[winName]) {
+      windows[winName].show()
+      args && windows[winName].webContents.send('visibility', args)
+    }
+  })
+  ipcMain.on('close-dialog', async(event, winName) => {
+    if (pages[winName]) {
+      windows[winName].hide()
+    }
+  })
+  ipcMain.on('get-printers', async(event, winName) => {
+    if (pages[winName]) {
+      const printerList = windows[winName].webContents.getPrinters()
+      event.sender.send('printers', printerList)
+    }
   })
 }
 

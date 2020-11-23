@@ -3,28 +3,62 @@ export default {
   name: 'MyPrint',
   functional: true,
   props: {
-    innerHTML: String
+    header: String,
+    body: String,
+    footer: String
   },
   render(createElement, { props }) {
-    return createElement('div', { 
-      class: 'print-area', 
-      domProps: {
-        innerHTML: props.innerHTML
-      }
-    })
+    return createElement('div', { class: 'my-print' }, [
+      createElement(
+        'div', 
+        { 
+          class: 'my-print-header',
+          domProps: {
+            innerHTML: props.header
+          }
+        }
+      ),
+      createElement('div', { 
+        class: 'my-print-body', 
+        domProps: {
+          innerHTML: props.body
+        }
+      }),
+      createElement(
+        'div', 
+        { 
+          class: 'my-print-footer',
+          domProps: {
+            innerHTML: props.footer
+          }
+        }
+      )
+    ])
   }
 }
 </script>
 
 <style lang="scss" media="print,screen">
-.print-area {
-  margin: 0 5px;
+.my-print {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
   color: #000000;
-  font-size: 14px;
-  background-color: #fff;
+  font-size: 12px;
+  font-family: '宋体';
+  box-sizing: border-box;
+  p {
+    margin: 0 0 5px 0;
+    &:last-child {
+      margin: 0;
+    }
+  }
   .single-content {
     padding: 10px;
     border: 1px solid #000000;
+  }
+  .single-bottom {
+    padding-top: 10px;
   }
   .title {
     font-size: 16px;
@@ -42,37 +76,38 @@ export default {
     margin-bottom: 5px;
   }
   .each-line > p:first-child {
-    padding-right: 10px;
-  }
-  u {
-    font-size: 13px;
+    padding-right: 5px;
   }
   .bh {
-    line-height: 64px;
+    line-height: 44px;
   }
-  .keep {
-    word-break: keep-all;
+  .signature {
+    display: flex;
+    align-items: center;
+    img {
+      width: auto;
+      height: 30px;
+      margin-top: -20px;
+      box-sizing: border-box;
+    }
   }
-  .high-one {
-    padding-top: 10px;
-    min-height: 120px;
+  .p-0 {
+    padding: 0;
   }
-  .high-two {
-    padding-top: 20px;
-    min-height: 120px;
+  .text-underline {
+    border-bottom: 1px solid #000;
   }
-  .mandatory {
-    min-width: 184px;
-  }
-  .position {
+  .text-center {
     text-align: center;
   }
-  .interval {
-    width: 100%;
-    text-align: center;
+  .text-indent {
+    text-indent: 25px;
   }
-  .interval span {
-    padding: 0 10px;
+  .text-interval {
+    text-align: center;
+    span {
+      padding: 0 10px;
+    }
   }
 }
 </style>

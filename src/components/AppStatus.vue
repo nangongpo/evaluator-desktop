@@ -3,18 +3,22 @@ import Button from 'primevue/button'
 export default {
   name: 'AppStatus',
   functional: true,
-  components: { Button },
   props: {
-    icon: {
-      type: String,
-      default: 'pi pi-wifi'
-    },
-    active: Boolean
+    icon: String,
+    active: Boolean,
+    position: String
   },
   render(createElement, { props, data, children }) {
-    const { active } = props
-    return createElement('div', { class: 'app-status' }, [
-      createElement('Button', 
+    const { active, position } = props
+    return createElement('div', {
+      class: {
+        'drag-content': true,
+        'app-status': true,
+        'left': position === 'left',
+        'right': position === 'right'
+      }
+    }, [
+      createElement(Button,
         { 
           class: {
             'p-button-rounded': true,
@@ -39,9 +43,17 @@ export default {
 
 <style lang="scss">
 .app-status {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  display: inline-block;
+  &.left {
+    position: absolute;
+    top: .25rem;
+    left: .25rem;
+  }
+  &.right {
+    position: absolute;
+    top: .25rem;
+    right: .25rem;
+  }
   .p-button {
     .p-button-icon {
       font-size: 1.3rem

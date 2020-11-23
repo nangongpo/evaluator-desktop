@@ -5,21 +5,34 @@ module.exports = {
   // 多页配置
   pages: {
     master: {
-      entry: 'src/views/master/main.js',
+      entry: 'src/main.js',
       template: 'public/index.html',
       title: '', // 窗口的标题
       label: '主页', // 菜单的名称
       // 窗口的配置参数, https://www.electronjs.org/docs/api/browser-window#new-browserwindowoptions
       __window: {
-        backgroundColor: '#6699cb'
+        width: 200,
+        height: 60,
+        maximizable: false,
+        minimizable: false,
+        resizable: false,
+        fullscreenable: false,
+        frame: false,
+        transparent: true,
+        alpha: 0,
+        hasShadow: false,
+        alwaysOnTop: false,
+        webPreferences: {
+          devTools: false
+        }
         // focusable: false
       },
       // 是否为主窗口，控制窗口的关闭
       __isMainWindow: true
     },
     evaluator: {
-      entry: 'src/views/evaluator/main.js',
-      template: 'public/dialog.html',
+      entry: 'src/main.js',
+      template: 'public/index.html',
       title: '',
       label: '评价器系统',
       // 窗口的配置参数
@@ -30,13 +43,12 @@ module.exports = {
         maximizable: false,
         resizable: false,
         skipTaskbar: false,
-        fullscreen: false,
-        backgroundColor: '#6699cb'
+        fullscreen: false
       }
     },
     'signature-board': {
-      entry: 'src/views/signature-board/main.js',
-      template: 'public/dialog.html',
+      entry: 'src/main.js',
+      template: 'public/index.html',
       title: '',
       label: '签字板',
       // 窗口的配置参数
@@ -47,25 +59,27 @@ module.exports = {
         maximizable: false,
         resizable: false,
         skipTaskbar: false,
-        fullscreen: false,
-        backgroundColor: '#fff'
+        fullscreen: false
       }
     },
     print: {
-      entry: 'src/views/print/main.js',
-      template: 'public/dialog.html',
+      entry: 'src/main.js',
+      template: 'public/index.html',
       title: '', // 窗口的标题
       label: '主页', // 菜单的名称
       // 窗口的配置参数, https://www.electronjs.org/docs/api/browser-window#new-browserwindowoptions
       __window: {
-        center: true,
-        backgroundColor: '#6699cb'
+        center: true
         // focusable: false
+        // webPreferences: {
+        //   devTools: true,
+        //   spellcheck: true
+        // }
       }
     },
     upgrade: {
-      entry: 'src/views/upgrade/main.js',
-      template: 'public/dialog.html',
+      entry: 'src/main.js',
+      template: 'public/index.html',
       title: '',
       label: '应用升级',
       // 窗口的配置参数
@@ -77,7 +91,7 @@ module.exports = {
         resizable: false,
         skipTaskbar: false,
         fullscreen: false,
-        backgroundColor: '#6699cb'
+        alwaysOnTop: true
       }
     }
   },
@@ -98,7 +112,7 @@ module.exports = {
       // publish: ['github'],
       publish: {
         provider: 'generic',
-        url: 'http://localhost:9527/dist_electron/'
+        url: 'http://47.94.85.21/evaluator/'
       },
       win: {
         icon: 'public/favicon.ico',

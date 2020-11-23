@@ -1,6 +1,5 @@
 <template>
-  <div class="evaluator">
-    <AppStatus :active="appActive"/>
+  <AppWrapper :active="appActive" position="right" class="app-wrapper evaluator">
     <Card class="dialog-card">
       <h4 slot="title" class="dialog-card-title">请您对我们的服务做出评价</h4>
       <template slot="content">
@@ -13,12 +12,12 @@
         <Button icon="pi pi-times" label="取消" class="p-button-secondary" @click="handleSubmit('cancel')" />
       </template>
     </Card>
-  </div>
+  </AppWrapper>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import AppStatus from 'components/AppStatus'
+import AppWrapper from 'components/AppWrapper'
 import Card from 'primevue/card'
 import Rating from 'primevue/rating'
 import Button from 'primevue/button'
@@ -29,7 +28,7 @@ const describeMap = ['不满意', '一般', '满意', '非常满意']
       
 export default {
   name: 'evaluator',
-  components: { AppStatus, Card, Rating, Button },
+  components: { AppWrapper, Card, Rating, Button },
   data() {
     return {
       timer: null,

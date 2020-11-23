@@ -12,7 +12,8 @@ const routes = [
   {
     path: '/print',
     name: 'print',
-    component: () => import('views/print/print')
+    component: () => import('views/print/print'),
+    props: true
   }
 ]
 

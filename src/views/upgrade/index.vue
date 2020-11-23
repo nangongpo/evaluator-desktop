@@ -2,7 +2,7 @@
   <div class="wrapper">
     升级页
     <ProgressBar :value="percentage" />
-    <span>正在检测版本，请稍后</span>
+    <span>{{message}}</span>
   </div>
 </template>
 
@@ -13,20 +13,25 @@ export default {
   components: { ProgressBar },
   data() {
     return {
+      message: '正在检查更新...',
       percentage: 0
     }
   },
-  computed: {},
-  watch: {},
-  created() { },
-  mounted() { },
+  mounted() {
+    this.initContent()
+  },
   methods: {
     initContent() {
       window.ipcRenderer.on('message', (e, message) => {
-        console.log(message)
+        console.log('message', message)
+        this.message = message
       })
       window.ipcRenderer.on('download-progress', (e, data) => {
         this.percentage = Number(data)
+      })
+      window.ipcRenderer.on('isUpdateNow', () => {
+        // 是否现在更新
+        console.log('下载完成,是否退出完成更新')
       })
     }
   }

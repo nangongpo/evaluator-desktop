@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from 'views/signature-board/index'
-// import VueRouter from 'vue-router'
+import router from '@/router'
 import store from '@/store'
 
 import 'styles/global.scss'
@@ -11,6 +11,7 @@ import 'primeicons/primeicons.css'
 import ToastService from 'primevue/toastservice'
 import MessageTip from '@/mixins/message-tip'
 import Tooltip from 'primevue/tooltip'
+import Button from 'primevue/button'
 
 Vue.config.productionTip = false
 
@@ -18,17 +19,10 @@ Vue.config.productionTip = false
 Vue.use(ToastService)
 Vue.use(MessageTip)
 Vue.directive('tooltip', Tooltip)
-
-// const router = new VueRouter({
-//   routes: [{
-//     path: '/',
-//     name: 'home',
-//     component: () => import('views/signature-board/index')
-//   }]
-// })
+Vue.component('Button', Button)
 
 new Vue({
-  // router,
+  router,
   store,
   render: h => h(App)
 }).$mount('#app')

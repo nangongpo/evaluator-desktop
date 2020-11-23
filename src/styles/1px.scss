@@ -1,0 +1,57 @@
+@import './mixin.scss';
+
+@mixin setLine($direction) {
+  @include setOnepx(var(--surface-d), $direction)
+}
+
+.p-1px, .p-1px-t, .p-1px-b, .p-1px-tb, .p-1px-l, .p-1px-r {
+  position: relative;
+}
+
+.p-1px {
+  &:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    border: 1px solid var(--surface-d);
+    color: var(--surface-d);
+    height: 200%;
+    transform-origin: left top;
+    // transform: scale(0.5);
+  }
+}
+
+.p-1px-t {
+  &:before {
+    @include setLine('top')
+  }
+}
+
+.p-1px-b {
+  &:before {
+    @include setLine('bottom')
+  }
+}
+
+.p-1px-tb {
+  &:before {
+    @include setLine('top')
+  }
+  &:after {
+    @include setLine('bottom')
+  }
+}
+
+.p-1px-l {
+  &:before {
+    @include setLine('left')
+  }
+}
+
+.p-1px-r {
+  &:before {
+    @include setLine('right')
+  }
+}

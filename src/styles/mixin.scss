@@ -1,0 +1,42 @@
+@mixin setOnepx ($c, $direction) {
+  content: " ";
+  position: absolute;
+  color: $c;
+  // transform: scaleY(0.5);
+
+  @if $direction==top {
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1px solid $c;
+    transform-origin: 0 0
+  }
+
+  @else if $direction==bottom {
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1px solid $c;
+    transform-origin: 0 100%
+  }
+
+  @else if $direction==left {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    border-left: 1px solid $c;
+    transform-origin: 0 0
+  }
+
+  @else if $direction==right {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    border-right: 1px solid $c;
+    transform-origin: 100% 0
+  }
+}

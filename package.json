@@ -1,6 +1,6 @@
 {
   "name": "evaluator-desktop",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "private": true,
   "author": "nangongpo",
   "description": "An Electron Application",
@@ -19,8 +19,9 @@
   "main": "background.js",
   "dependencies": {
     "axios": "^0.20.0",
-    "code128.js": "^1.0.3",
     "core-js": "^3.6.5",
+    "jsbarcode2": "^3.9.3",
+    "lodash-es": "^4.17.15",
     "primeflex": "^2.0.0",
     "primeicons": "^4.0.0",
     "primevue": "^2.0.9",

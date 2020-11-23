@@ -2952,11 +2952,6 @@ code-point-at@^1.0.0:
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
-code128.js@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/code128.js/-/code128.js-1.0.3.tgz#2eafac91631dd1978c066f4aeafd38f3fe75391b"
-  integrity sha512-1yCg7EnjriAXc4+6UJvv6YNkLUMEfzJtEVYV6xvijfcfysxxb6ct3sjr0WRBZtowAbcNDzRJWNO5bZiyM0a9kw==
-
 collection-visit@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/collection-visit/-/collection-visit-1.0.0.tgz#4bc0373c164bc3291b4d368c829cf1a80a59dca0"
@@ -5960,6 +5955,11 @@ js-yaml@^3.13.1, js-yaml@^3.14.0:
     argparse "^1.0.7"
     esprima "^4.0.0"
 
+jsbarcode2@^3.9.3:
+  version "3.9.3"
+  resolved "https://registry.yarnpkg.com/jsbarcode2/-/jsbarcode2-3.9.3.tgz#6fba942cc5824dfa783b6cd5a2b3e99121514d4d"
+  integrity sha512-+hHn7MNymccEbNdA1Aj1BOboIQsbX6py+vRzvnhE4Gd/gvZ5KKV32l4h1k3Cu2x6mDvnZ5X8/23CBMD4Di+Eew==
+
 jsbn@~0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
@@ -6227,6 +6227,11 @@ locate-path@^5.0.0:
   integrity sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
   dependencies:
     p-locate "^4.1.0"
+
+lodash-es@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
+  integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
 
 lodash.defaultsdeep@^4.6.1:
   version "4.6.1"

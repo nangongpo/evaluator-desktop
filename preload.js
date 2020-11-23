@@ -2,14 +2,17 @@
 import { ipcRenderer, remote } from 'electron'
 
 window.ipcRenderer = ipcRenderer
-window.getCurrentWindow = remote.getCurrentWindow
+const { print, printToPDF } = remote.getCurrentWebContents()
+window.getCurrentWebContents = () => {
+  return { print, printToPDF }
+}
 
 // 创建
 const path = require('path')
 const { readJson, readJsonSync } = require('fs-extra')
 window.fs = { readJson, readJsonSync }
 
-window.__ipconfig = process.env.NODE_ENV === 'development' 
+window.__ipconfig = process.env.NODE_ENV === 'development'
   ? require('./ipconfig.json') 
   : fs.readJsonSync(path.join(process.cwd(), 'ipconfig.json'))
 
